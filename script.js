@@ -1,7 +1,7 @@
 "use strict";
 
 // This must match the port used when you start your FastAPI backend.
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL = "https://mental-health-prediction-model-2-h8pu.onrender.com";
 
 const form = document.getElementById("prediction-form");
 const predictButton = document.getElementById("predict-button");
