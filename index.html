@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10172b">
+  <meta name="description" content="Explore a machine learning prediction of mental health score based on lifestyle and digital habits.">
+  <title>MindScope | Mental Health Score Predictor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="#top" aria-label="MindScope home"><span class="brand-icon" aria-hidden="true">✦</span><span>mind<span class="brand-accent">scope</span></span></a>
+    <span class="header-pill"><span class="status-dot"></span> ML-powered insights</span>
+  </header>
+  <main id="top" class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span class="eyebrow-line"></span> YOUR WELL-BEING, IN PERSPECTIVE</div>
+      <h1 id="page-title">Understand your habits.<br><span>Explore your well-being.</span></h1>
+      <p class="hero-copy">Discover an estimated mental health score based on your digital habits, daily routine, and lifestyle — powered by your machine learning model.</p>
+      <div class="hero-meta"><span>✧ Personalized input</span><span>◈ Instant prediction</span><span>♡ Educational insights</span></div>
+    </section>
+
+    <div class="workspace">
+      <section class="form-card" aria-labelledby="form-title">
+        <div class="card-head"><div><p class="kicker">THE ASSESSMENT</p><h2 id="form-title">Tell us about yourself</h2><p>Complete the fields below to generate your prediction.</p></div><div class="card-badge" aria-hidden="true">01 / 04</div></div>
+        <form id="prediction-form" novalidate>
+          <fieldset class="form-section"><legend><span class="section-number">01</span> Personal information</legend><div class="field-grid">
+            <div class="field"><label for="Age">Age <span>*</span></label><input id="Age" name="Age" type="number" min="10" max="100" step="1" placeholder="e.g. 22" required><small>Between 10 and 100 years</small></div>
+            <div class="field"><label for="Gender">Gender <span>*</span></label><select id="Gender" name="Gender" required><option value="" selected disabled>Select gender</option><option>Male</option><option>Female</option></select></div>
+            <div class="field"><label for="Country">Country <span>*</span></label><input id="Country" name="Country" type="text" list="countries" maxlength="100" placeholder="e.g. India" required><datalist id="countries"><option value="India"><option value="USA"><option value="Canada"><option value="Australia"><option value="UK"><option value="Germany"><option value="Mexico"><option value="Turkey"><option value="France"></datalist></div>
+            <div class="field"><label for="Academic_Level">Academic level <span>*</span></label><select id="Academic_Level" name="Academic_Level" required><option value="" selected disabled>Select level</option><option>Undergraduate</option><option>Graduate</option><option>High School</option></select></div>
+          </div></fieldset>
+          <fieldset class="form-section"><legend><span class="section-number">02</span> Social media usage</legend><div class="field-grid">
+            <div class="field"><label for="Most_Used_Platform">Most used platform <span>*</span></label><select id="Most_Used_Platform" name="Most_Used_Platform" required><option value="" selected disabled>Select platform</option><option>Facebook</option><option>LinkedIn</option><option>Instagram</option><option>Snapchat</option><option>Twitter</option><option>YouTube</option><option>TikTok</option><option>LINE</option><option>KakaoTalk</option><option>VKontakte</option><option>WhatsApp</option><option>WeChat</option></select></div>
+            <div class="field"><label for="Purpose_Of_Use">Primary purpose <span>*</span></label><select id="Purpose_Of_Use" name="Purpose_Of_Use" required><option value="" selected disabled>Select purpose</option><option>Networking</option><option>Education</option><option>Entertainment</option><option>News</option></select></div>
+            <div class="field"><label for="Avg_Daily_Usage_Hours">Daily usage <span>*</span> <em>hours</em></label><input id="Avg_Daily_Usage_Hours" name="Avg_Daily_Usage_Hours" type="number" min="1" max="24" step="any" placeholder="e.g. 4.5" required></div>
+            <div class="field"><label for="Daily_Unlocks">Daily phone unlocks <span>*</span></label><input id="Daily_Unlocks" name="Daily_Unlocks" type="number" min="0" max="24" step="1" placeholder="e.g. 15" required><small>Backend currently accepts 0–24</small></div>
+          </div></fieldset>
+          <fieldset class="form-section"><legend><span class="section-number">03</span> Daily lifestyle</legend><div class="field-grid">
+            <div class="field"><label for="Study_Hours">Study time <span>*</span> <em>hours/day</em></label><input id="Study_Hours" name="Study_Hours" type="number" min="0" max="24" step="any" placeholder="e.g. 3" required></div>
+            <div class="field"><label for="Physical_Activity_Hours">Physical activity <span>*</span> <em>hours/day</em></label><input id="Physical_Activity_Hours" name="Physical_Activity_Hours" type="number" min="0" max="24" step="any" placeholder="e.g. 1.5" required></div>
+            <div class="field field-wide"><label for="Sleep_Hours_Per_Night">Nightly sleep <span>*</span> <em>hours</em></label><input id="Sleep_Hours_Per_Night" name="Sleep_Hours_Per_Night" type="number" min="0" max="24" step="any" placeholder="e.g. 7" required></div>
+          </div></fieldset>
+          <fieldset class="form-section last-section"><legend><span class="section-number">04</span> Stress & well-being</legend><div class="field-grid"><div class="field field-wide"><label for="Stress_Level">Current stress level <span>*</span></label><select id="Stress_Level" name="Stress_Level" required><option value="" selected disabled>Select stress level</option><option>Low</option><option>Medium</option><option>High</option><option>Very High</option></select></div></div></fieldset>
+          <div id="error-box" class="error-box" role="alert" hidden></div>
+          <button id="predict-button" class="primary-button" type="submit"><span id="button-label">Predict my mental health score</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+          <p class="form-footnote">Your inputs are sent to your locally running FastAPI model. <span>All fields are required.</span></p>
+        </form>
+      </section>
+      <aside class="side-column">
+        <section id="result-card" class="result-card" aria-labelledby="result-title" aria-live="polite">
+          <div class="result-top"><span class="kicker">YOUR PREDICTION</span><span class="result-icon" aria-hidden="true">✧</span></div>
+          <div id="result-empty" class="result-state"><div class="orb" aria-hidden="true"><span>✦</span></div><h2 id="result-title">A little clarity<br>starts here.</h2><p>Complete the assessment to see your model's estimated score.</p><div class="result-placeholder"><span></span><span></span><span></span></div></div>
+          <div id="result-loading" class="result-state" hidden><div class="spinner" aria-hidden="true"></div><h2>Analyzing your information...</h2><p>Waiting for your model to return a prediction.</p></div>
+          <div id="result-success" class="result-state" hidden><div class="success-mark" aria-hidden="true">✓</div><p class="score-label">Predicted mental health score</p><div id="score-value" class="score-value">—</div><p class="score-note">Generated by your trained ML model</p><button id="predict-again" type="button" class="secondary-button">Make another prediction ↗</button></div>
+        </section>
+        <section class="info-card"><div class="info-icon" aria-hidden="true">✺</div><h3>Powered by your model</h3><p>Your FastAPI backend processes the inputs with the trained scikit-learn pipeline. This page does not generate or guess scores.</p><div class="info-divider"></div><div class="connection"><span class="connection-dot"></span><div><strong>Local API endpoint</strong><code>127.0.0.1:8000/predict</code></div></div></section>
+        <section class="disclaimer"><span aria-hidden="true">ⓘ</span><p><strong>Important:</strong> This prediction is for educational purposes only. It is not a medical diagnosis or a professional mental health assessment.</p></section>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer shell"><span>✦ mindscope</span><span>Built with Python · FastAPI · Machine Learning</span></footer>
+</body>
+</html>
