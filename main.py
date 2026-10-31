@@ -30,7 +30,7 @@ class StudentData(BaseModel):
     Most_Used_Platform:Literal['Facebook', 'LinkedIn', 'Instagram', 'Snapchat', 'Twitter','YouTube', 'TikTok', 'LINE', 'KakaoTalk', 'VKontakte', 'WhatsApp','WeChat']
     Purpose_Of_Use: Literal['Networking', 'Education', 'Entertainment', 'News']
     Avg_Daily_Usage_Hours:float = Field(...,ge = 1,le =24)
-    Daily_Unlocks:int=Field(...,ge=0,le = 24)
+    Daily_Unlocks:int=Field(...,ge=0,le = 500)
     Study_Hours:float=Field(...,ge=0,le = 24)
     Physical_Activity_Hours:float=Field(...,ge=0,le = 24)
     Sleep_Hours_Per_Night:float = Field(...,ge=0,le = 24)
